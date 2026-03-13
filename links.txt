@@ -1,0 +1,7 @@
+fonts:
+DotGothic16 (pixel - body)
+Silkscreen (pixel - titles)
+
+Starcatcher page ideas:
+Magic and Relics Catalogue
+Song Player

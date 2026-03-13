@@ -1,0 +1,170 @@
+@import url("bootstrap/dist/css/bootstrap.min.css");
+
+* {
+    margin: 2%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+      font-family: Silkscreen, sans-serif;
+    color: #36fff2;  
+}
+
+body {
+    font-family: Silkscreen, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background-color: #06000f; /* starting color */
+     transition: background-color 2s ease; /* smooth fade */
+}
+
+body.finished {
+  background-color: #0d083c; /* target color after typing */
+}
+
+icons{
+    size :  1000px;
+}
+
+header {
+    background-color: #333;
+    color: #73e5ff;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.carousel-inner {
+    position: relative;
+    height: 400px;
+}
+
+.carousel-item {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.dots {
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot.active, .dot:hover {
+    background-color: #717171;
+}
+
+.centerDialogue{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      height: 100vh;   
+}
+
+
+
+#typewriter {  
+  font-size: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  
+    transition: opacity 2s ease; 
+}
+
+#typewriter.fade-out {
+  opacity: 0; 
+}
+
+.title{
+    font-family: Silkscreen, sans-serif;
+    color: #36fff2;
+}
+
+.silkscreen-regular {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.silkscreen-bold {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
