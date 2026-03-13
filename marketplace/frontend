@@ -1,0 +1,7 @@
+const stripe = Stripe('your-publishable-key');
+const { error } = await stripe.confirmCardPayment(clientSecret, {
+  payment_method: {
+    card: cardElement,
+    billing_details: { name: 'Customer Name' },
+  },
+});

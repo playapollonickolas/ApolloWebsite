@@ -36,3 +36,51 @@ typeWriterEffect("typewriter", [
   "Destroy my enemies,",
   "And thou shall be my existence..."
 ], 100, 1500);
+
+function formatTextField(field) {
+  if (Array.isArray(field)) return field[0] || "";
+  if (typeof field === "string") return field;
+  return "";
+}
+
+
+
+function renderRelics(relics) {
+  const list = document.getElementById("relic-list");
+  if (!list) return;
+
+  relics.forEach(relic => {
+    const card = document.createElement("div");
+    card.className = "relic-card";
+
+    const icon = document.createElement("img");
+    icon.className = "relic-icon";
+    icon.src = relic.icon;
+    icon.alt = formatTextField(relic.name) + " icon";
+
+    const name = document.createElement("h3");
+    name.textContent = formatTextField(relic.name);
+
+    const desc = document.createElement("p");
+    desc.textContent = formatTextField(relic.description);
+
+    card.appendChild(icon);
+    card.appendChild(name);
+    card.appendChild(desc);
+
+    list.appendChild(card);
+  });
+}
+
+fetch("relics.json")
+  .then(response => response.json())
+  .then(data => {
+    if (Array.isArray(data)) {
+      renderRelics(data);
+    } else {
+      console.warn("Expected relics.json as array", data);
+    }
+  })
+  .catch(err => {
+    console.error("Failed to load relics.json", err);
+  });

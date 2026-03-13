@@ -13,6 +13,7 @@ h1{
 
 body {
     font-family: Silkscreen, sans-serif;
+    font-weight: 400;
     line-height: 1.6;
     color: #ffffff;
     background-color: #06000f; /* starting color */
@@ -23,8 +24,10 @@ body.finished {
   background-color: #0d083c; /* target color after typing */
 }
 
-icons{
-    size :  1000px;
+.icons {
+  width: 48px;   
+  height: 48px;
+  color: #333;   
 }
 
 header {
@@ -167,4 +170,80 @@ p {
   font-family: "Silkscreen", sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  background-color: transparent;
+  color: rgb(255, 255, 255); 
+  text-decoration: none; 
+  transition: color 0.3s ease, transform 0.15s ease;
+}
+
+.icon-button:hover {
+  color: rgb(10, 239, 255); 
+  transform: scale(1.2);    
+}
+
+.icon-button:active {
+  transform: scale(0.9);    
+}
+
+.icon-button svg {
+  width: 32px;
+  height: 32px;
+}
+
+
+
+.relic-section {
+  margin-top: 2rem;
+  background-color: rgba(0, 0, 0, 0.297);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+#relic-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.relic-card {
+  padding: 0.8rem;
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+.relic-card img.relic-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  filter : drop-shadow(5px 5px 0.1px rgba(0, 0, 0, 0.656));
+
+ image-rendering: pixelated;
+  image-rendering: crisp-edges;
+ 
+}
+
+.relic-card h3 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.relic-card p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: #cce;
 }

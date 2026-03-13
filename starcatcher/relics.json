@@ -1,0 +1,91 @@
+[
+
+
+  {
+    "id": "swiftwind-sandals",
+    
+    "name": [
+    "Swiftwind Sandals",
+    "Sandálias da Ventania",
+    "Sandalias de la Ventisca"
+  ],
+
+    "description": [
+    "Increases movement speed by &value.",
+    "Aumenta a velocidade de movimento em &value.",
+    "Aumenta da velocidad e de movimento em &value."
+  ],
+
+    "rarity": 1,
+    "icon": "images/icons/relics/Boots.png",
+    "values": [250, 200],
+    "cost" : 100
+  },
+
+ {
+    "id": "furyfist-gauntlets",
+    
+    "name": [
+    "Furyfist Gauntlets",
+    "Manoplas do Punho Furioso",
+    "Manoplas del Puño Furioso"
+  ],
+
+    "description": [
+    "Increases attack damage by &value.",
+    "Aumenta a velocidade de ataque em &value%.",
+    "Aumenta la velocidad de ataque en &value%."
+  ],
+
+    "rarity": 1,
+    "icon": "images/icons/relics/Furyfist.png",
+    "values": [250, 200],
+    "cost" : 100
+  },
+
+
+  {
+    "id": "quicksilver-dagger",
+    
+    "name": [
+    "Quicksilver Dagger",
+    "Adaga de Mercúrio",
+    "Daga de Mercurio"
+  ],
+
+    "description": [
+    "Increases attack speed by &value%.",
+    "Aumenta a velocidade de ataque em &value%.",
+    "Aumenta la velocidad de ataque en &value%."
+  ],
+
+    "rarity": 1,
+    "icon": "images/icons/relics/Dagger.png",
+    "values": [250, 200],
+    "cost" : 100
+  },
+
+    {
+    "id": "aura-amplifier",
+    
+    "name": [
+    "Aura Amplifier",
+    "Amplificador Áurico",
+    "Amplificador Aurico"
+  ],
+
+    "description": [
+    "Increases skill damage by &value%.",
+    "Aumenta o dano de habilidade em &value%.",
+    "Aumenta el daño de habilidad en &value%."
+  ],
+
+    "rarity": 1,
+    "icon": "images/icons/relics/AuraAmplifier.png",
+    "values": [250, 200],
+    "cost" : 100
+  }
+  
+
+
+]
