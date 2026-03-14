@@ -17,7 +17,7 @@
 
     "rarity": 1,
     "icon": "images/icons/relics/Boots.png",
-    "values": [250, 200],
+    "values": [10, 15, 20, 35, 50],
     "cost" : 100
   },
 
@@ -38,7 +38,7 @@
 
     "rarity": 1,
     "icon": "images/icons/relics/Furyfist.png",
-    "values": [250, 200],
+    "values": [10, 25, 40, 85, 125, 180],
     "cost" : 100
   },
 
@@ -107,8 +107,29 @@
     "icon": "images/icons/relics/UndeadPaldron.png",
     "values": [250, 200],
     "cost" : 100
+  	},
+
+  
+   {
+    "id": "undeads-pauldron",
+    
+    "name": [
+    "Undead's Pauldron",
+    "Ombreira do Morto-Vivo",
+    "Hombrera del No-Muerto"
+  ],
+
+    "description": [
+    "Increases skill damage by &value%.",
+    "Aumenta o dano de habilidade em &value%.",
+    "Aumenta el daño de habilidad en &value%."
+  ],
+
+    "rarity": 1,
+    "icon": "images/icons/relics/UndeadPaldron.png",
+    "values": [250, 200],
+    "cost" : 100
   	}
   
-
 
 ]

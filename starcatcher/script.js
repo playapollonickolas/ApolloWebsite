@@ -44,7 +44,6 @@ function formatTextField(field) {
 }
 
 
-
 function renderRelics(relics) {
   const list = document.getElementById("relic-list");
   if (!list) return;
@@ -56,13 +55,15 @@ function renderRelics(relics) {
     const icon = document.createElement("img");
     icon.className = "relic-icon";
     icon.src = relic.icon;
-    icon.alt = formatTextField(relic.name) + " icon";
+    icon.alt = relic.name[0] + " icon"; // use first name as alt
 
     const name = document.createElement("h3");
-    name.textContent = formatTextField(relic.name);
+    name.textContent = relic.name[0]; // pick first language or handle dynamically
 
     const desc = document.createElement("p");
-    desc.textContent = formatTextField(relic.description);
+    // Format description with values
+    const formattedDescriptions = formatDescription(relic.description, relic.values);
+    desc.textContent = formattedDescriptions[0]; // pick first language for now
 
     card.appendChild(icon);
     card.appendChild(name);
@@ -71,6 +72,12 @@ function renderRelics(relics) {
     list.appendChild(card);
   });
 }
+
+function formatDescription(descArray, values) {
+  const valueString = values.join("/");
+  return descArray.map(desc => desc.replace("&value", valueString));
+}
+
 
 fetch("relics.json")
   .then(response => response.json())
