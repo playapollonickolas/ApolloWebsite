@@ -1,6 +1,5 @@
 [
 
-
   {
     "id": "swiftwind-sandals",
     
@@ -64,8 +63,9 @@
     "values": [250, 200],
     "cost" : 100
   },
+   
 
-    {
+   {
     "id": "aura-amplifier",
     
     "name": [
@@ -84,7 +84,30 @@
     "icon": "images/icons/relics/AuraAmplifier.png",
     "values": [250, 200],
     "cost" : 100
-  }
+  },
+
+
+
+   {
+    "id": "undeads-pauldron",
+    
+    "name": [
+    "Undead's Pauldron",
+    "Ombreira do Morto-Vivo",
+    "Hombrera del No-Muerto"
+  ],
+
+    "description": [
+    "Increases skill damage by &value%.",
+    "Aumenta o dano de habilidade em &value%.",
+    "Aumenta el daño de habilidad en &value%."
+  ],
+
+    "rarity": 1,
+    "icon": "images/icons/relics/UndeadPaldron.png",
+    "values": [250, 200],
+    "cost" : 100
+  	}
   
 
 
