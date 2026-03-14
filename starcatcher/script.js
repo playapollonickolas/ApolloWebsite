@@ -91,3 +91,15 @@ fetch("relics.json")
   .catch(err => {
     console.error("Failed to load relics.json", err);
   });
+
+
+  window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+
+  // Background moves slower
+  document.querySelector('.background').style.transform = `translateY(${scrollY * 0.3}px)`;
+
+  // Character moves faster
+  document.querySelector('.character').style.transform = `translateY(${scrollY * 0.6}px)`;
+});
+

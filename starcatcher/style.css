@@ -12,6 +12,8 @@ h1{
 }
 
 body {
+   margin: 0;
+   
     font-family: Silkscreen, sans-serif;
     font-weight: 400;
     line-height: 1.6;
@@ -21,7 +23,42 @@ body {
 }
 
 body.finished {
-  background-color: #0d083c; /* target color after typing */
+  background-color: #03001a; /* target color after typing */
+  ;
+}
+
+.layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  will-change: transform; /* performance boost */
+}
+
+.background {
+  background-image: url('/starcatcher/images/background/background.png');
+  z-index: 1;
+}
+
+.character {
+  background-image: url('/starcatcher/images/background/character.png');
+  z-index: 2;
+  background-size: contain;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  margin-top: 100vh;
+  padding: 2rem;
+  background: #fff;
+  font-size: 1.5rem;
 }
 
 .icons {
@@ -44,11 +81,12 @@ main {
 }
 
 footer {
-    background-color: #333;
+ background-image: linear-gradient(to top, #0013a5a1, #00000000 );
     color: #fff;
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
+   margin: -4%;
 }
 
 h1, h2, h3 {
@@ -200,12 +238,25 @@ p {
   height: 32px;
 }
 
+.logo{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+
+    scale: 50%;
+
+    filter : drop-shadow(0 0 12px rgba(255, 255, 255, 0.471));
+}
 
 iframe {
   width: 100%;
   max-width: 646px;
   height: 190px;   
   min-height: 190px;
+
+    filter : drop-shadow(5px 5px 0.1px rgba(0, 0, 0, 0.6));
 }
 
 
