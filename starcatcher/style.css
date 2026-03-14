@@ -201,6 +201,14 @@ p {
 }
 
 
+iframe {
+  width: 100%;
+  max-width: 646px;
+  height: 190px;   
+}
+
+
+
 
 .relic-section {
   margin-top: 2rem;
@@ -247,3 +255,5 @@ p {
   margin: 0;
   color: #cce;
 }
+
+
