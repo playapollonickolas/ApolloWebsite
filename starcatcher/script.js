@@ -3,28 +3,18 @@ function typeWriterEffect(elementId, texts, speed = 100, pause = 1000, fadeDelay
   let textIndex = 0;
   let charIndex = 0;
 
-  function type() {
+    function type() {
     if (charIndex < texts[textIndex].length) {
       element.textContent += texts[textIndex].charAt(charIndex);
       charIndex++;
       setTimeout(type, speed);
     } else {
-      if (textIndex < texts.length - 1) {
-        setTimeout(() => {
-          element.textContent = ""; // clear for next sentence
-          textIndex++;
-          charIndex = 0;
-          type();
-        }, pause);
-      } else {
-        // ✅ Finished typing all sentences
-        setTimeout(() => {
-          element.classList.add("fade-out"); // fade text
-          setTimeout(() => {
-            document.body.classList.add("finished"); // fade background
-          }, fadeDelay);
-        }, pause);
-      }
+      setTimeout(() => {
+        element.textContent = "";
+        textIndex = (textIndex + 1) % texts.length; // loops back to 0
+        charIndex = 0;
+        type();
+      }, pause);
     }
   }
 
@@ -143,12 +133,7 @@ async function loadScreenshots() {
       'Screenshot_3.jpg',
       'Screenshot_4.jpg',
       'Screenshot_5.jpg',
-      'Screenshot_Delirium.jpg',
-      'Screenshot_1.png',
-      'Screenshot_2.png',
-      'Screenshot_3.png',
-      'Screenshot_4.png',
-      'Screenshot_5.png'
+      'Screenshot_Delirium.jpg'
     ];
     
     // Check which files exist
