@@ -93,13 +93,147 @@ fetch("relics.json")
   });
 
 
-  window.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
+  const maxScroll = window.innerHeight * 1.5; // Clamp scroll to 1.5x viewport height
+  const clampedScrollY = Math.min(scrollY, maxScroll);
+  
+  // Background moves slower (parallax effect)
+  const background = document.querySelector('.background');
+  if (background) {
+    background.style.transform = `translateY(${-clampedScrollY * 0.15}px)`;
+  }
 
-  // Background moves slower
-  document.querySelector('.background').style.transform = `translateY(${scrollY * 0.3}px)`;
-
-  // Character moves faster
-  document.querySelector('.character').style.transform = `translateY(${scrollY * 0.6}px)`;
+  // Character moves at medium speed (parallax effect)
+  const character = document.querySelector('.character');
+  if (character) {
+    character.style.transform = `translateY(${-clampedScrollY * 0.35}px)`;
+  }
 });
+
+// Screenshot Carousel
+let currentSlide = 0;
+let screenshots = [];
+
+async function loadScreenshots() {
+  // Try to fetch directory listing (requires server support)
+  try {
+    const response = await fetch('/starcatcher/images/screenshots/');
+    const html = await response.text();
+    
+    // Parse HTML for image files
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const links = doc.querySelectorAll('a');
+    
+    screenshots = Array.from(links)
+      .map(link => link.href)
+      .filter(href => /\.(jpg|jpeg|png|gif|webp)$/i.test(href))
+      .sort();
+    
+    if (screenshots.length === 0) {
+      throw new Error('No images found via directory listing');
+    }
+  } catch (err) {
+    console.log('Directory listing failed, using fallback method...');
+    // Fallback: Try common image patterns
+    const commonFiles = [
+      'Screenshot_1.jpg',
+      'Screenshot_2.jpg',
+      'Screenshot_3.jpg',
+      'Screenshot_4.jpg',
+      'Screenshot_5.jpg',
+      'Screenshot_Delirium.jpg',
+      'Screenshot_1.png',
+      'Screenshot_2.png',
+      'Screenshot_3.png',
+      'Screenshot_4.png',
+      'Screenshot_5.png'
+    ];
+    
+    // Check which files exist
+    for (const file of commonFiles) {
+      try {
+        const response = await fetch(`/starcatcher/images/screenshots/${file}`, { method: 'HEAD' });
+        if (response.ok) {
+          screenshots.push(`/starcatcher/images/screenshots/${file}`);
+        }
+      } catch (e) {
+        // File doesn't exist, continue
+      }
+    }
+  }
+  
+  if (screenshots.length > 0) {
+    initCarousel();
+  } else {
+    console.warn('No screenshots found');
+  }
+}
+
+function initCarousel() {
+  const carouselInner = document.getElementById('carousel-inner');
+  const carouselDots = document.getElementById('carousel-dots');
+  
+  // Clear existing content
+  carouselInner.innerHTML = '';
+  carouselDots.innerHTML = '';
+  
+  // Add carousel items
+  screenshots.forEach((src, index) => {
+    const item = document.createElement('div');
+    item.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+    
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `Screenshot ${index + 1}`;
+    
+    item.appendChild(img);
+    carouselInner.appendChild(item);
+    
+    // Add dot
+    const dot = document.createElement('div');
+    dot.className = `dot ${index === 0 ? 'active' : ''}`;
+    dot.addEventListener('click', () => goToSlide(index));
+    carouselDots.appendChild(dot);
+  });
+  
+  // Setup button listeners
+  document.getElementById('carousel-prev').addEventListener('click', prevSlide);
+  document.getElementById('carousel-next').addEventListener('click', nextSlide);
+}
+
+function showSlide(index) {
+  const items = document.querySelectorAll('.carousel-item');
+  const dots = document.querySelectorAll('.dot');
+  
+  items.forEach(item => item.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+  
+  if (items[index]) {
+    items[index].classList.add('active');
+  }
+  if (dots[index]) {
+    dots[index].classList.add('active');
+  }
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % screenshots.length;
+  showSlide(currentSlide);
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + screenshots.length) % screenshots.length;
+  showSlide(currentSlide);
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  showSlide(currentSlide);
+}
+
+// Load screenshots when page loads
+window.addEventListener('DOMContentLoaded', loadScreenshots);
+
 

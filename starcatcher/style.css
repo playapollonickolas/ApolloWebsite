@@ -6,6 +6,16 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.layer {
+    margin: 0;
+    padding: 0;
+}
+
 h1{
       font-family: Silkscreen, sans-serif;
     color: #36fff2;  
@@ -13,18 +23,32 @@ h1{
 
 body {
    margin: 0;
+   overflow-x: hidden;
    
+z-index: 2;
+
     font-family: Silkscreen, sans-serif;
     font-weight: 400;
     line-height: 1.6;
     color: #ffffff;
-    background-color: #06000f; /* starting color */
+    background-color: #000000; /* starting color */
      transition: background-color 2s ease; /* smooth fade */
+     
 }
 
+.mainBody{
+  position: relative;
+
+  z-index: 2;
+   margin: -4%;
+
+padding: 5%;
+
+   background-image: linear-gradient(to top, #000000,  #000000d8, #00000000 );
+  }
+
 body.finished {
-  background-color: #03001a; /* target color after typing */
-  ;
+  background-color: #03001a; /* target color after typing */  ;
 }
 
 .layer {
@@ -32,21 +56,21 @@ body.finished {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120vh;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center top;
   background-size: cover;
   will-change: transform; /* performance boost */
 }
 
 .background {
   background-image: url('/starcatcher/images/background/background.png');
-  z-index: 1;
+  z-index: -1;
 }
 
 .character {
   background-image: url('/starcatcher/images/background/character.png');
-  z-index: 2;
+  z-index: 0;
   background-size: contain;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -61,15 +85,21 @@ body.finished {
   font-size: 1.5rem;
 }
 
+.container {
+  position: relative;
+  z-index: 3;
+}
+
 .icons {
-  width: 48px;   
-  height: 48px;
-  color: #333;   
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 0.1rem;
+  color: #fff;   
 }
 
 header {
     background-color: #333;
-    color: #73e5ff;
     padding: 1rem;
     text-align: center;
 }
@@ -81,12 +111,16 @@ main {
 }
 
 footer {
- background-image: linear-gradient(to top, #0013a5a1, #00000000 );
+ position: relative;
+ z-index: 3;
+ background-image: linear-gradient(to top, #000000, #000000 );
     color: #fff;
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
    margin: -4%;
+
+       padding-bottom: 3rem;
 }
 
 h1, h2, h3 {
@@ -94,18 +128,69 @@ h1, h2, h3 {
 }
 
 p {
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
 }
 
 .carousel {
     position: relative;
+    z-index: 3;
     max-width: 800px;
     margin: 2rem auto;
 }
 
+.carousel-container {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.carousel-control {
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s ease;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+}
+
+.carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-control.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+    transform: translateY(-50%);
+}
+
+.carousel-control.next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+    transform: translateY(-50%);
+}
+
+.carousel-dots {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 1rem 0;
+}
+
 .carousel-inner {
     position: relative;
+    z-index: 3;
     height: 400px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .carousel-item {
@@ -113,6 +198,7 @@ p {
     position: absolute;
     width: 100%;
     height: 100%;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .carousel-item img {
@@ -123,6 +209,11 @@ p {
 
 .carousel-item.active {
     display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .prev, .next {
@@ -159,17 +250,17 @@ p {
 
 .dot {
     cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     display: inline-block;
-    transition: background-color 0.6s ease;
+    transition: background-color 0.3s ease;
 }
 
 .dot.active, .dot:hover {
-    background-color: #717171;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 .centerDialogue{
@@ -182,11 +273,16 @@ p {
 
 
 #typewriter {  
-  font-size: 2rem;
+  font-size: 1rem;
   white-space: nowrap;
   overflow: hidden;
+
+  
+     filter : drop-shadow(0 0 5px rgba(0, 0, 0, 0.913));
+
   
     transition: opacity 2s ease; 
+
 }
 
 #typewriter.fade-out {
@@ -238,16 +334,24 @@ p {
   height: 32px;
 }
 
-.logo{
-
+.logo {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
+    filter: drop-shadow(0 0 20px rgba(0, 0, 47, 0.913));
+}
 
-    scale: 50%;
+.logo img {
+    width: 50%;        /* ocupa 50% do container por padrão */
+    min-width: 450px;  /* limite mínimo — ajusta conforme o tamanho real da logo */
+    height: auto;      /* mantém a proporção original */
+}
 
-    filter : drop-shadow(0 0 12px rgba(255, 255, 255, 0.471));
+.card {
+  position: relative;
+  z-index: 3;
+  margin: 2rem auto;
+  max-width: 646px;
+  display: block;
 }
 
 iframe {
@@ -263,6 +367,8 @@ iframe {
 
 
 .relic-section {
+  position: relative;
+  z-index: 3;
   margin-top: 2rem;
   background-color: rgba(0, 0, 0, 0.297);
   border: 1px solid rgba(255, 255, 255, 0.2);
