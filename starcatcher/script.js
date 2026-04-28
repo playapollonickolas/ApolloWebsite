@@ -106,46 +106,34 @@ let currentSlide = 0;
 let screenshots = [];
 
 async function loadScreenshots() {
-  // Try to fetch directory listing (requires server support)
-  try {
-    const response = await fetch('/starcatcher/images/screenshots/');
-    const html = await response.text();
-    
-    // Parse HTML for image files
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const links = doc.querySelectorAll('a');
-    
-    screenshots = Array.from(links)
-      .map(link => link.href)
-      .filter(href => /\.(jpg|jpeg|png|gif|webp)$/i.test(href))
-      .sort();
-    
-    if (screenshots.length === 0) {
-      throw new Error('No images found via directory listing');
-    }
-  } catch (err) {
-    console.log('Directory listing failed, using fallback method...');
-    // Fallback: Try common image patterns
-    const commonFiles = [
-      'Screenshot_1.jpg',
-      'Screenshot_2.jpg',
-      'Screenshot_3.jpg',
-      'Screenshot_4.jpg',
-      'Screenshot_5.jpg',
-      'Screenshot_Delirium.jpg'
-    ];
-    
-    // Check which files exist
-    for (const file of commonFiles) {
-      try {
-        const response = await fetch(`/starcatcher/images/screenshots/${file}`, { method: 'HEAD' });
-        if (response.ok) {
-          screenshots.push(`/starcatcher/images/screenshots/${file}`);
-        }
-      } catch (e) {
-        // File doesn't exist, continue
-      }
+  // For static hosting (GitHub Pages, etc.), directly try to load known screenshot files
+  const commonFiles = [
+    'Screenshot_1.jpg',
+    'Screenshot_2.jpg',
+    'Screenshot_3.jpg',
+    'Screenshot_4.jpg',
+    'Screenshot_5.jpg',
+    'Screenshot_5.png',
+    'Screenshot_Delirium.jpg',
+    'Screenshot_Delirium.png'
+  ];
+  
+  // Try to load each file - add it to screenshots if the image loads successfully
+  for (const file of commonFiles) {
+    const src = `/starcatcher/images/screenshots/${file}`;
+    try {
+      // Attempt to load the image
+      const img = new Image();
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = src;
+      });
+      screenshots.push(src);
+      console.log(`Loaded screenshot: ${file}`);
+    } catch (e) {
+      // Image didn't load, continue to next
+      console.log(`Skipped ${file} (not found or failed to load)`);
     }
   }
   
@@ -219,6 +207,6 @@ function goToSlide(index) {
 }
 
 // Load screenshots when page loads
-window.addEventListener('DOMContentLoaded', loadScreenshots);
+loadScreenshots();
 
 
