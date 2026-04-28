@@ -118,22 +118,31 @@ async function loadScreenshots() {
     'Screenshot_Delirium.png'
   ];
   
+  // Try both absolute and relative paths
+  const pathPrefixes = [
+    './starcatcher/images/screenshots/',  // Relative from root
+    '/starcatcher/images/screenshots/'    // Absolute path
+  ];
+  
   // Try to load each file - add it to screenshots if the image loads successfully
   for (const file of commonFiles) {
-    const src = `/starcatcher/images/screenshots/${file}`;
-    try {
-      // Attempt to load the image
-      const img = new Image();
-      await new Promise((resolve, reject) => {
-        img.onload = resolve;
-        img.onerror = reject;
-        img.src = src;
-      });
-      screenshots.push(src);
-      console.log(`Loaded screenshot: ${file}`);
-    } catch (e) {
-      // Image didn't load, continue to next
-      console.log(`Skipped ${file} (not found or failed to load)`);
+    for (const prefix of pathPrefixes) {
+      const src = prefix + file;
+      try {
+        // Attempt to load the image
+        const img = new Image();
+        await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = src;
+        });
+        screenshots.push(src);
+        console.log(`Loaded screenshot: ${src}`);
+        break; // Move to next file if this one loaded
+      } catch (e) {
+        // Image didn't load, try next path prefix
+        console.log(`Skipped ${src} (not found or failed to load)`);
+      }
     }
   }
   
