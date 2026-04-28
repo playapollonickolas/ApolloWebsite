@@ -44,7 +44,7 @@ z-index: 2;
 
 padding: 5%;
 
-   background-image: linear-gradient(to top, #080024, #080024, #00083f00 );
+   background-image: linear-gradient(to top, #000024, #000624, #02001e00 );
   }
 
 body.finished {
@@ -100,7 +100,7 @@ body.finished {
 
 header {
     background-color: #333;
-    padding: 1rem;
+    padding: 2rem;
     text-align: center;
 }
 
@@ -113,7 +113,7 @@ main {
 footer {
  position: relative;
  z-index: 3;
- background-image: linear-gradient(to top, #0300a2, #000000);
+ background-image: linear-gradient(to top, #000829, #000000);
     color: #fff;
     text-align: center;
     padding: 1rem;
@@ -278,7 +278,7 @@ p {
   overflow: hidden;
 
   
-     filter : drop-shadow(0 0 5px rgba(0, 0, 0, 0.913));
+     filter : drop-shadow(0 0 5px rgba(0, 0, 0, 0.987));
 
   
     transition: opacity 2s ease; 
@@ -337,7 +337,7 @@ p {
 .logo {
     display: flex;
     justify-content: center;
-    filter: drop-shadow(0 0 20px rgba(0, 0, 47, 0.913));
+    filter: drop-shadow(0 0 20px rgba(0, 0, 47, 0.93));
 }
 
 .logo img {
