@@ -97,13 +97,14 @@ window.addEventListener('scroll', () => {
   // Character moves at medium speed (parallax effect)
   const character = document.querySelector('.character');
   if (character) {
-    character.style.transform = `translateY(${-clampedScrollY * 0.35}px)`;
+    character.style.transform = `translateY(${-clampedScrollY * 0.375}px)`;
   }
 });
 
-// Screenshot Carousel
 let currentSlide = 0;
 let screenshots = [];
+let autoPlayInterval = null;
+const AUTO_PLAY_DELAY = 5000; // 4 seconds between slides
 
 async function loadScreenshots() {
   // For static hosting (GitHub Pages, etc.), directly try to load known screenshot files
@@ -111,17 +112,16 @@ async function loadScreenshots() {
     'Screenshot_1.jpg',
     'Screenshot_2.jpg',
     'Screenshot_3.jpg',
+        'Screenshot_Hysteria.png',
     'Screenshot_4.jpg',
     'Screenshot_5.jpg',
     'Screenshot_5.png',
-    'Screenshot_Delirium.jpg',
     'Screenshot_Delirium.png'
   ];
   
   // Try both absolute and relative paths
   const pathPrefixes = [
-    './starcatcher/images/screenshots/',  // Relative from root
-    '/starcatcher/images/screenshots/'    // Absolute path
+    './starcatcher/images/screenshots/',  // Relative from root   
   ];
   
   // Try to load each file - add it to screenshots if the image loads successfully
@@ -173,16 +173,29 @@ function initCarousel() {
     item.appendChild(img);
     carouselInner.appendChild(item);
     
-    // Add dot
-    const dot = document.createElement('div');
+    // Add star icon button for this slide
+    const dot = document.createElement('img');
+    // use absolute path (works when site is served from root)
+    dot.src = '/starcatcher/images/icons/starIcon.png';
+    dot.alt = `Select slide ${index + 1}`;
     dot.className = `dot ${index === 0 ? 'active' : ''}`;
+    dot.style.cursor = 'pointer';
     dot.addEventListener('click', () => goToSlide(index));
     carouselDots.appendChild(dot);
   });
   
   // Setup button listeners
-  document.getElementById('carousel-prev').addEventListener('click', prevSlide);
-  document.getElementById('carousel-next').addEventListener('click', nextSlide);
+  document.getElementById('carousel-prev').addEventListener('click', () => {
+    prevSlide();
+    resetAutoPlay();
+  });
+  document.getElementById('carousel-next').addEventListener('click', () => {
+    nextSlide();
+    resetAutoPlay();
+  });
+  
+  // Start auto-play
+  startAutoPlay();
 }
 
 function showSlide(index) {
@@ -210,9 +223,25 @@ function prevSlide() {
   showSlide(currentSlide);
 }
 
+function startAutoPlay() {
+  if (screenshots.length <= 1) return; // Don't auto-play if only 1 slide
+  if (autoPlayInterval) clearInterval(autoPlayInterval);
+  
+  autoPlayInterval = setInterval(() => {
+    currentSlide = (currentSlide + 1) % screenshots.length;
+    showSlide(currentSlide);
+  }, AUTO_PLAY_DELAY);
+}
+
+function resetAutoPlay() {
+  if (autoPlayInterval) clearInterval(autoPlayInterval);
+  startAutoPlay();
+}
+
 function goToSlide(index) {
   currentSlide = index;
   showSlide(currentSlide);
+  resetAutoPlay();
 }
 
 // Load screenshots when page loads

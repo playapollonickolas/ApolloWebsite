@@ -22,18 +22,29 @@ h1{
 }
 
 body {
-   margin: 0;
+   margin: 10px;
    overflow-x: hidden;
    
 z-index: 2;
 
     font-family: Silkscreen, sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.6;
     color: #ffffff;
     background-color: #01000e; /* starting color */
      transition: background-color 2s ease; /* smooth fade */
      
+     background-blend-mode: multiply;
+}
+
+body p {
+ font-family: "DotGothic16", sans-serif;
+  font-weight: 400;  
+}
+
+footer p{
+   font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
 }
 
 .mainBody{
@@ -44,7 +55,7 @@ z-index: 2;
 
 padding: 5%;
 
-   background-image: linear-gradient(to top, #000024, #000624, #02001e00 );
+   background-image: linear-gradient(to top, #000000, #00022d, #000bd300 );
   }
 
 body.finished {
@@ -93,14 +104,15 @@ body.finished {
 .icons {
   position: relative;
   display: flex;
-  justify-content: center;
-  gap: 0.1rem;
+  justify-content : center;
+  gap: 0;
   color: #fff;   
 }
 
 header {
     background-color: #333;
     padding: 2rem;
+
     text-align: center;
 }
 
@@ -113,23 +125,23 @@ main {
 footer {
  position: relative;
  z-index: 3;
- background-image: linear-gradient(to top, #000829, #000000);
+background-color: rgba(0, 0, 0, 1);
     color: #fff;
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
    margin: -5%;
 
+  
        padding-bottom: 3rem;
 }
+
+
 
 h1, h2, h3 {
     margin-bottom: 0.5rem;
 }
 
-p {
-    margin-bottom: 0rem;
-}
 
 .carousel {
     position: relative;
@@ -195,10 +207,10 @@ p {
 
 .carousel-item {
     display: none;
-    position: absolute;
+    position : absolute;
     width: 100%;
     height: 100%;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .carousel-item img {
@@ -249,18 +261,20 @@ p {
 }
 
 .dot {
-    cursor: pointer;
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.3s ease;
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  margin: 0 6px;
+  display: inline-block;
+  object-fit: contain;
+  opacity: 0.4;
+
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .dot.active, .dot:hover {
-    background-color: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+  transform: scale(1.05);
 }
 
 .centerDialogue{
@@ -311,8 +325,8 @@ p {
   align-items: center;
   justify-content: center;
 
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
 
   background-color: transparent;
   color: rgb(255, 255, 255); 
