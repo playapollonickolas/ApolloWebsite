@@ -112,7 +112,7 @@ async function loadScreenshots() {
     'Screenshot_1.jpg',
     'Screenshot_2.jpg',
     'Screenshot_3.jpg',
-        'Screenshot_Hysteria.png',
+    'Screenshot_Hysteria.png',
     'Screenshot_4.jpg',
     'Screenshot_5.jpg',
     'Screenshot_5.png',
