@@ -56,7 +56,8 @@ footer p{
 padding: 10%;
 
  background-blend-mode: multiply;
-   background-image: linear-gradient(to top, #000000, #00022d, #000bd300 );
+   background-image: linear-gradient(to top, #000000, #00022d, #000bd300);
+   
   }
 
 body.finished {
@@ -113,10 +114,11 @@ body.finished {
 }
 
 header {
- 
 
     margin-top: -10%;
     padding-bottom: 30px;
+
+background-color: rgba(0, 0, 0, 0);
 
     text-align: center;
 }
@@ -272,14 +274,14 @@ h1, h2, h3 {
   margin: 0 6px;
   display: inline-block;
   object-fit: contain;
-  opacity: 0.4;
+  opacity: 0.35;
 
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .dot.active, .dot:hover {
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.4);
 }
 
 .centerDialogue{
@@ -362,7 +364,8 @@ h1, h2, h3 {
 .logo {
     display: flex;
     justify-content: center;
-    filter: drop-shadow(0 0 20px rgb(0, 0, 47));
+    filter: drop-shadow(0 0 18px rgb(0, 0, 55));
+  
 }
 
 .logo img {
