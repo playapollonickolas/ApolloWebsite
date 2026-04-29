@@ -226,7 +226,7 @@ h1, h2, h3 {
 .carousel-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit : cover;
 }
 
 .carousel-item.active {
@@ -274,7 +274,7 @@ h1, h2, h3 {
   cursor: pointer;
   width: 22px;
   height: 22px;
-  margin: 0 6px;
+  margin: 0 3px;
   display: inline-block;
   object-fit: contain;
   opacity: 0.35;
@@ -285,6 +285,9 @@ h1, h2, h3 {
 .dot.active, .dot:hover {
   opacity: 1;
   transform: scale(1.4);
+  
+     filter : drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+  
 }
 
 .centerDialogue{
@@ -383,6 +386,7 @@ h1, h2, h3 {
   margin: 2rem auto;
   max-width: 646px;
   display: block;
+  filter: drop-shadow(0 0 15px rgb(0, 0, 55));
 }
 
 iframe {
@@ -394,7 +398,21 @@ iframe {
     filter : drop-shadow(5px 5px 0.1px rgba(0, 0, 0, 0.6));
 }
 
+.video-container {
+  position: relative;
+  z-index: 3;
+  margin: 2rem auto;
+  max-width: 646px;
+  display: block;
+  filter: drop-shadow(0 0 18px rgb(0, 0, 55));
+}
 
+.video-container iframe {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
 
 
 .relic-section {
